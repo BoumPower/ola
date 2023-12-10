@@ -15,7 +15,7 @@ uses the GPIO pins to control an off-host multiplexer. It's recommended to
 use the hardware multiplexer.
 
 
-## Config file: `ola-spi.conf`
+## Config file: `ola-i2c.conf`
 
 `base_uid = <string>`  
 The starting UID to use for the I2C RDM, e.g. `7a70:00000100`.

@@ -1,50 +1,50 @@
 # LIBRARIES
 ##################################################
-if USE_SPI
+if USE_I2C
 # This is a library which isn't coupled to olad
-lib_LTLIBRARIES += plugins/spi/libolaspicore.la plugins/spi/libolaspi.la
-plugins_spi_libolaspicore_la_SOURCES = \
-    plugins/spi/SPIBackend.cpp \
-    plugins/spi/SPIBackend.h \
-    plugins/spi/SPIOutput.cpp \
-    plugins/spi/SPIOutput.h \
-    plugins/spi/SPIWriter.cpp \
-    plugins/spi/SPIWriter.h
-plugins_spi_libolaspicore_la_LIBADD = common/libolacommon.la
+lib_LTLIBRARIES += plugins/i2c/libolai2ccore.la plugins/i2c/libolai2c.la
+plugins_i2c_libolai2ccore_la_SOURCES = \
+    plugins/i2c/I2CBackend.cpp \
+    plugins/i2c/I2CBackend.h \
+    plugins/i2c/I2COutput.cpp \
+    plugins/i2c/I2COutput.h \
+    plugins/i2c/I2CWriter.cpp \
+    plugins/i2c/I2CWriter.h
+plugins_i2c_libolai2ccore_la_LIBADD = common/libolacommon.la
 
 # Plugin description is generated from README.md
-built_sources += plugins/spi/SPIPluginDescription.h
-nodist_plugins_spi_libolaspi_la_SOURCES = \
-    plugins/spi/SPIPluginDescription.h
-plugins/spi/SPIPluginDescription.h: plugins/spi/README.md plugins/spi/Makefile.mk plugins/convert_README_to_header.sh
-	sh $(top_srcdir)/plugins/convert_README_to_header.sh $(top_srcdir)/plugins/spi $(top_builddir)/plugins/spi/SPIPluginDescription.h
+built_sources += plugins/i2c/I2CPluginDescription.h
+nodist_plugins_i2c_libolai2c_la_SOURCES = \
+    plugins/i2c/I2CPluginDescription.h
+plugins/i2c/I2CPluginDescription.h: plugins/i2c/README.md plugins/i2c/Makefile.mk plugins/convert_README_to_header.sh
+	sh $(top_srcdir)/plugins/convert_README_to_header.sh $(top_srcdir)/plugins/i2c $(top_builddir)/plugins/i2c/I2CPluginDescription.h
 
-plugins_spi_libolaspi_la_SOURCES = \
-    plugins/spi/SPIDevice.cpp \
-    plugins/spi/SPIDevice.h \
-    plugins/spi/SPIPlugin.cpp \
-    plugins/spi/SPIPlugin.h \
-    plugins/spi/SPIPort.cpp \
-    plugins/spi/SPIPort.h
-plugins_spi_libolaspi_la_LIBADD = \
+plugins_i2c_libolai2c_la_SOURCES = \
+    plugins/i2c/I2CDevice.cpp \
+    plugins/i2c/I2CDevice.h \
+    plugins/i2c/I2CPlugin.cpp \
+    plugins/i2c/I2CPlugin.h \
+    plugins/i2c/I2CPort.cpp \
+    plugins/i2c/I2CPort.h
+plugins_i2c_libolai2c_la_LIBADD = \
     common/libolacommon.la \
     olad/plugin_api/libolaserverplugininterface.la \
-    plugins/spi/libolaspicore.la
+    plugins/i2c/libolai2ccore.la
 
 # TESTS
 ##################################################
-test_programs += plugins/spi/SPITester
+test_programs += plugins/i2c/I2CTester
 
-plugins_spi_SPITester_SOURCES = \
-    plugins/spi/SPIBackendTest.cpp \
-    plugins/spi/SPIOutputTest.cpp \
-    plugins/spi/FakeSPIWriter.cpp \
-    plugins/spi/FakeSPIWriter.h
-plugins_spi_SPITester_CXXFLAGS = $(COMMON_TESTING_FLAGS)
-plugins_spi_SPITester_LDADD = $(COMMON_TESTING_LIBS) \
-                              plugins/spi/libolaspicore.la \
+plugins_i2c_I2CTester_SOURCES = \
+    plugins/i2c/I2CBackendTest.cpp \
+    plugins/i2c/I2COutputTest.cpp \
+    plugins/i2c/FakeI2CWriter.cpp \
+    plugins/i2c/FakeI2CWriter.h
+plugins_i2c_I2CTester_CXXFLAGS = $(COMMON_TESTING_FLAGS)
+plugins_i2c_I2CTester_LDADD = $(COMMON_TESTING_LIBS) \
+                              plugins/i2c/libolai2ccore.la \
                               common/libolacommon.la
 
 endif
 
-EXTRA_DIST += plugins/spi/README.md
+EXTRA_DIST += plugins/i2c/README.md
